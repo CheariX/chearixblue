@@ -34,7 +34,7 @@ COPY --from=ghcr.io/ublue-os/bling:latest /files /tmp/bling/files
 COPY --from=ghcr.io/ublue-os/akmods:${AKMODS_FLAVOR}-${IMAGE_MAJOR_VERSION} /rpms/ /tmp/akmods-rpms
 RUN find /tmp/akmods-rpms
 RUN rpm-ostree install \
-    /tmp/akmods-rpms/kmods/kmod-evdi-*.rpm \
+    # /tmp/akmods-rpms/kmods/kmod-evdi-*.rpm \ # Errors with: 'nothing provides evdi-kmod-common >= 1.14.1 needed by kmod-evdi-6.6.8-200.fc39.x86_64-1.14.1-4.20231123gita943d98.fc39.x86_64'
     /tmp/akmods-rpms/kmods/kmod-VirtualBox*.rpm
 
 # Copy build scripts & configuration
