@@ -19,10 +19,23 @@ ARG IMAGE_MAJOR_VERSION=39
 # The default recipe is set to the recipe's default filename
 # so that `podman build` should just work for most people.
 ARG RECIPE=recipe.yml
+ARG RECIPE=recipe.yml
 # The default image registry to write to policy.json and cosign.yaml
 ARG IMAGE_REGISTRY=ghcr.io/ublue-os
 
 COPY cosign.pub /usr/share/ublue-os/cosign.pub
+
+# https://github.com/ublue-os/akmods
+COPY --from=ghcr.io/ublue-os/akmods:main-${IMAGE_MAJOR_VERSION} /rpms/ /tmp/rpms
+RUN find /tmp/rpms
+RUN rpm-ostree install  /tmp/rpms/ublue-os/kmod-evdi-*.rpm
+RUN rpm-ostree install  /tmp/rpms/ublue-os/kmod-VirtualBox-*.rpm
+
+# https://github.com/ublue-os/akmods
+COPY --from=ghcr.io/ublue-os/akmods:main-${IMAGE_MAJOR_VERSION} /rpms/ /tmp/rpms
+RUN find /tmp/rpms
+RUN rpm-ostree install  /tmp/rpms/ublue-os/kmod-evdi-*.rpm
+RUN rpm-ostree install  /tmp/rpms/ublue-os/kmod-VirtualBox-*.rpm
 
 # https://github.com/ublue-os/akmods
 COPY --from=ghcr.io/ublue-os/akmods:${AKMODS_FLAVOR}-${IMAGE_MAJOR_VERSION} /rpms/ /tmp/akmods-rpms
