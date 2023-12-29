@@ -11,6 +11,7 @@
 # !! Warning: changing these might not do anything for you. Read comment above.
 ARG IMAGE_MAJOR_VERSION=39
 ARG BASE_IMAGE_URL=ghcr.io/ublue-os/silverblue-main
+ARG AKMODS_FLAVOR="${AKMODS_FLAVOR:-main}"
 
 FROM ${BASE_IMAGE_URL}:${IMAGE_MAJOR_VERSION}
 
@@ -29,10 +30,11 @@ COPY --from=ghcr.io/ublue-os/bling:latest /rpms /tmp/bling/rpms
 COPY --from=ghcr.io/ublue-os/bling:latest /files /tmp/bling/files
 
 # https://github.com/ublue-os/akmods
-COPY --from=ghcr.io/ublue-os/akmods:main-${IMAGE_MAJOR_VERSION} /rpms/ /tmp/rpms
+COPY --from=ghcr.io/ublue-os/akmods:${AKMODS_FLAVOR}-${IMAGE_MAJOR_VERSION} /rpms/ /tmp/akmods-rpms
 RUN find /tmp/rpms
-RUN rpm-ostree install  /tmp/rpms/ublue-os/kmod-evdi-*.rpm
-RUN rpm-ostree install  /tmp/rpms/ublue-os/kmod-VirtualBox-*.rpm
+RUN rpm-ostree install \
+    /tmp/akmods-rpms/*evdi*.rpm \
+    /tmp/akmods-rpms/*VirtualBox*.rpm
 
 # Copy build scripts & configuration
 COPY build.sh /tmp/build.sh
