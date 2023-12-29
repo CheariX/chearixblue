@@ -32,7 +32,7 @@ COPY --from=ghcr.io/ublue-os/bling:latest /files /tmp/bling/files
 
 # https://github.com/ublue-os/akmods
 COPY --from=ghcr.io/ublue-os/akmods:${AKMODS_FLAVOR}-${IMAGE_MAJOR_VERSION} /rpms/ /tmp/akmods-rpms
-RUN find /tmp/rpms
+RUN find /tmp/akmods-rpms
 RUN rpm-ostree install \
     /tmp/akmods-rpms/*evdi*.rpm \
     /tmp/akmods-rpms/*VirtualBox*.rpm
