@@ -26,7 +26,6 @@ modules:
     install:
       # - micro
       # - starship
-      - akmod-VirtualBox
       - fish
       - git-credential-libsecret
       - libgda-sqlite
