@@ -11,9 +11,10 @@
 # !! Warning: changing these might not do anything for you. Read comment above.
 ARG IMAGE_MAJOR_VERSION=39
 ARG BASE_IMAGE_URL=ghcr.io/ublue-os/silverblue-main
-ARG AKMODS_FLAVOR="${AKMODS_FLAVOR:-main}"
 
 FROM ${BASE_IMAGE_URL}:${IMAGE_MAJOR_VERSION}
+ARG AKMODS_FLAVOR="${AKMODS_FLAVOR:-main}"
+ARG IMAGE_MAJOR_VERSION=39
 
 # The default recipe is set to the recipe's default filename
 # so that `podman build` should just work for most people.
