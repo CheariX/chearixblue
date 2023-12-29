@@ -16,7 +16,7 @@ FROM ${BASE_IMAGE_URL}:${IMAGE_MAJOR_VERSION}
 
 # The default recipe is set to the recipe's default filename
 # so that `podman build` should just work for most people.
-ARG RECIPE=recipe.yml 
+ARG RECIPE=recipe.yml
 # The default image registry to write to policy.json and cosign.yaml
 ARG IMAGE_REGISTRY=ghcr.io/ublue-os
 
@@ -27,6 +27,12 @@ COPY cosign.pub /usr/share/ublue-os/cosign.pub
 # Feel free to remove these lines if you want to speed up image builds and don't want any bling
 COPY --from=ghcr.io/ublue-os/bling:latest /rpms /tmp/bling/rpms
 COPY --from=ghcr.io/ublue-os/bling:latest /files /tmp/bling/files
+
+# https://github.com/ublue-os/akmods
+COPY --from=ghcr.io/ublue-os/akmods:main-${IMAGE_MAJOR_VERSION} /rpms/ /tmp/rpms
+RUN find /tmp/rpms
+RUN rpm-ostree install  /tmp/rpms/ublue-os/kmod-evdi-*.rpm
+RUN rpm-ostree install  /tmp/rpms/ublue-os/kmod-VirtualBox-*.rpm
 
 # Copy build scripts & configuration
 COPY build.sh /tmp/build.sh
