@@ -4,7 +4,7 @@ name: chearixblue
 description: A starting point for further customization of uBlue images. Make your own! https://ublue.it/making-your-own/
 
 # the base image to build on top of (FROM) and the version tag to use
-base-image: ghcr.io/ublue-os/silverblue-nvidia
+base-image: ghcr.io/ublue-os/kinoite-nvidia
 image-version: 39 # latest is also supported if you want new updates ASAP
 
 # module configuration, executed in order
@@ -28,10 +28,11 @@ modules:
       # - starship
       - fish
       - git-credential-libsecret
-      - libgda-sqlite
       - neovim
+      # - libgda-sqlite
       - nextcloud-client
-      - nextcloud-client-nautilus
+      # - nextcloud-client-nautilus
+      - nextcloud-client-dolphin
       - owncloud-client
       - snapper
       - solaar
