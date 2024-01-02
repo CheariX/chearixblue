@@ -89,10 +89,10 @@ modules:
     fonts:
       nerd-fonts:
         - FiraCode # don't add "Nerd Font" suffix.
-        - Hack
+        # - Hack
         - SourceCodePro
-        - Terminus
-        - JetBrainsMono
+        # - Terminus
+        # - JetBrainsMono
         - NerdFontsSymbolsOnly
       google-fonts:
         - Roboto
