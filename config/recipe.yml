@@ -41,6 +41,8 @@ modules:
       - firefox # default firefox removed in favor of flatpak
       - firefox-langpacks # langpacks needs to also be removed to prevent dependency problems
 
+  - from-file: sway-packages.yml
+
   - type: bling # configure what to pull in from ublue-os/bling
     install:
       - justfiles # add "!include /usr/share/ublue-os/just/100-bling.just"
@@ -62,6 +64,19 @@ modules:
     custom-flatpaks: # this section is optional
       # - Celluloid: io.github.celluloid_player.Celluloid
       # - Krita: org.kde.krita
+
+  - type: fonts
+    fonts:
+      nerd-fonts:
+        - FiraCode # don't add "Nerd Font" suffix.
+        - Hack
+        - SourceCodePro
+        - Terminus
+        - JetBrainsMono
+        - NerdFontsSymbolsOnly
+      google-fonts:
+        - Roboto
+        - Open Sans
 
   - type: script
     scripts:

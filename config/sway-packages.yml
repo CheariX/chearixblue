@@ -1,0 +1,22 @@
+type: rpm-ostree
+install:
+  - copyq
+  - grimshot
+  # - kanshi # already in sericea
+  - light
+  # - pavucontrol # already in sericea
+  # - playerctl # already in sericea
+  # - pulseaudio-utils # already in sericea
+  - rofi-wayland
+  - rofimoji
+  - slurp
+  # - sway # already in sericea
+  # - sway-config-fedora # already in sericea
+  # - swaybg # already in sericea
+  # - swayidle # already in sericea
+  # - swaylock # already in sericea
+  - vulkan-validation-layers
+  # - waybar # already in sericea
+  - wdisplays
+  # - wev # already in sericea
+  - wob
