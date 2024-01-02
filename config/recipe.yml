@@ -4,7 +4,7 @@ name: chearixblue
 description: A starting point for further customization of uBlue images. Make your own! https://ublue.it/making-your-own/
 
 # the base image to build on top of (FROM) and the version tag to use
-base-image: ghcr.io/ublue-os/sericea-nvidia
+base-image: ghcr.io/ublue-os/sericea
 image-version: 39 # latest is also supported if you want new updates ASAP
 
 # module configuration, executed in order
@@ -31,8 +31,8 @@ modules:
       - neovim
       # - libgda-sqlite
       - nextcloud-client
-      # - nextcloud-client-nautilus
-      - nextcloud-client-dolphin
+      - nextcloud-client-nautilus
+      # - nextcloud-client-dolphin
       - owncloud-client
       - snapper
       - solaar
@@ -42,6 +42,8 @@ modules:
       - firefox-langpacks # langpacks needs to also be removed to prevent dependency problems
 
   - from-file: sway-packages.yml
+
+  - from-file: hyprland-packages.yml
 
   - type: bling # configure what to pull in from ublue-os/bling
     install:
