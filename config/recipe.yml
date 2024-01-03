@@ -29,7 +29,7 @@ modules:
       - fish
       - git-credential-libsecret
       - neovim
-      # - libgda-sqlite
+      - libgda-sqlite
       - nextcloud-client
       - nextcloud-client-nautilus
       # - nextcloud-client-dolphin
