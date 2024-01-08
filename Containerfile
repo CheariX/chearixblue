@@ -34,7 +34,7 @@ COPY --from=ghcr.io/ublue-os/bling:latest /files /tmp/bling/files
 COPY --from=ghcr.io/ublue-os/akmods:${AKMODS_FLAVOR}-${IMAGE_MAJOR_VERSION} /rpms/ /tmp/akmods-rpms
 RUN find /tmp/akmods-rpms
 ADD https://negativo17.org/repos/fedora-multimedia.repo \
-    /tmp/ublue-os-akmods-addons/rpmbuild/SOURCES/negativo17-fedora-multimedia.repo
+    /etc/yum.repos.d/negativo17-fedora-multimedia.repo
 RUN rpm-ostree install \
     /tmp/akmods-rpms/kmods/kmod-evdi-*.rpm \
     /tmp/akmods-rpms/kmods/kmod-VirtualBox*.rpm
