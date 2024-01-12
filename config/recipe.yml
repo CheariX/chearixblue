@@ -38,8 +38,13 @@ modules:
       - solaar
       - VirtualBox
     remove:
+      - fedora-flathub-remote
       - firefox # default firefox removed in favor of flatpak
       - firefox-langpacks # langpacks needs to also be removed to prevent dependency problems
+      - gnome-tour
+      - openssh-server
+      - toolbox # we use distrobox
+      - virtualbox-guest-additions
 
   # - from-file: sway-packages.yml
 
