@@ -32,15 +32,6 @@ COPY --from=ghcr.io/ublue-os/bling:latest /files /tmp/bling/files
 
 # https://github.com/ublue-os/akmods
 COPY --from=ghcr.io/ublue-os/akmods:${AKMODS_FLAVOR}-${IMAGE_MAJOR_VERSION} /rpms/ /tmp/akmods-rpms
-RUN find /tmp/akmods-rpms
-ADD https://negativo17.org/repos/fedora-multimedia.repo \
-    /etc/yum.repos.d/negativo17-fedora-multimedia.repo
-RUN rpm-ostree install \
-    /tmp/akmods-rpms/kmods/kmod-evdi-*.rpm \
-    /tmp/akmods-rpms/kmods/kmod-VirtualBox*.rpm
-
-# Add ublue kmods, add needed negativo17 repo and then immediately disable due to incompatibility with RPMFusion
-COPY --from=ghcr.io/ublue-os/akmods:${AKMODS_FLAVOR}-${IMAGE_MAJOR_VERSION} /rpms/ /tmp/akmods-rpms
 RUN find /tmp/akmods-rpms && \
     wget https://negativo17.org/repos/fedora-multimedia.repo -O /etc/yum.repos.d/negativo17-fedora-multimedia.repo && \
     rpm-ostree install \
