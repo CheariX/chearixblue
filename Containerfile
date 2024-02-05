@@ -9,7 +9,6 @@
 # does nothing if the image is built in the cloud.
 
 # !! Warning: changing these might not do anything for you. Read comment above.
-ARG IMAGE_MAJOR_VERSION=rawhide
 ARG BASE_IMAGE_URL=ghcr.io/ublue-os/silverblue-main
 
 FROM ${BASE_IMAGE_URL}:${IMAGE_MAJOR_VERSION}
@@ -19,18 +18,10 @@ ARG IMAGE_MAJOR_VERSION=39
 # The default recipe is set to the recipe's default filename
 # so that `podman build` should just work for most people.
 ARG RECIPE=recipe.yml
-ARG RECIPE=recipe.yml
 # The default image registry to write to policy.json and cosign.yaml
 ARG IMAGE_REGISTRY=ghcr.io/ublue-os
 
 COPY cosign.pub /usr/share/ublue-os/cosign.pub
-
-# https://github.com/ublue-os/akmods
-COPY --from=ghcr.io/ublue-os/akmods:${AKMODS_FLAVOR}-${IMAGE_MAJOR_VERSION} /rpms/ /tmp/akmods-rpms
-RUN find /tmp/akmods-rpms
-RUN rpm-ostree install \
-    /tmp/akmods-rpms/kmods/kmod-evdi-*.rpm \
-    /tmp/akmods-rpms/kmods/kmod-VirtualBox*.rpm
 
 # Add ublue kmods, add needed negativo17 repo and then immediately disable due to incompatibility with RPMFusion
 COPY --from=ghcr.io/ublue-os/akmods:${AKMODS_FLAVOR}-${IMAGE_MAJOR_VERSION} /rpms/ /tmp/akmods-rpms
